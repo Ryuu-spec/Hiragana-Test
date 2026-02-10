@@ -115,9 +115,11 @@
             font-weight: 700;
             color: #2c2c2c;
             box-shadow: 2px 2px 0px 0px #000000;
-            padding: 5px;
+            padding: clamp(8px, 1.2vw, 14px);
             text-align: center;
-            line-height: 1.2;
+            line-height: 1.15;
+            word-break: keep-all;
+            overflow-wrap: break-word;
         }
 
         /* 단어 박스 - Inter 폰트로 통일 */
@@ -312,19 +314,26 @@
             const baseSize = window.innerWidth > 1200 ? 38 : window.innerWidth > 768 ? 30 : 22;
             
             if (text.length >= 6) {
-                // '야행+와행' 같은 긴 텍스트 - 한 줄로 표시
-                element.style.fontSize = `${baseSize * 0.5}px`;
-                element.style.whiteSpace = 'nowrap';
-                element.style.lineHeight = '1';
+                // '야행+와행' 같은 긴 텍스트 - 줄바꿈하여 표시
+                const parts = text.split('+');
+                if (parts.length === 2) {
+                    // '+' 기준으로 줄바꿈
+                    element.innerHTML = parts[0] + '<br>+' + parts[1];
+                } else {
+                    element.textContent = text;
+                }
+                element.style.fontSize = `${baseSize * 0.45}px`;
+                element.style.whiteSpace = 'normal';
+                element.style.lineHeight = '1.15';
             } else if (text.length >= 3) {
                 // 일반 행 ('아행', '카행' 등)
-                element.style.fontSize = `${baseSize * 0.9}px`;
+                element.style.fontSize = `${baseSize * 0.85}px`;
                 element.style.whiteSpace = 'normal';
-                element.style.lineHeight = '1.2';
+                element.style.lineHeight = '1.15';
             } else {
                 element.style.fontSize = `${baseSize}px`;
                 element.style.whiteSpace = 'normal';
-                element.style.lineHeight = '1.2';
+                element.style.lineHeight = '1.15';
             }
         }
     </script>
