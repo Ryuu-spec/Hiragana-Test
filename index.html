@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,7 +14,7 @@
         }
 
         body {
-            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+            font-family: 'Noto Sans KR', sans-serif;
             background-color: #F8FAED;
             margin: 0;
             padding: 0;
@@ -55,6 +55,9 @@
             flex-direction: column;
             justify-content: center;
             min-height: 0;
+            align-items: flex-start;
+            padding-left: 8vw;
+            width: 100%;
         }
 
         .question-section:first-of-type {
@@ -66,6 +69,7 @@
             align-items: center;
             justify-content: flex-start;
             margin-bottom: 1vh;
+            width: 100%;
         }
 
         .question-number {
@@ -108,11 +112,12 @@
         /* 단어 박스 - Inter 폰트로 통일 */
         .words-container {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             gap: clamp(15px, 2vw, 32px);
             margin: 5vh 0 0 0;
             flex-wrap: wrap;
-            padding: 0 1vw;
+            padding: 0;
+            width: 100%;
         }
 
         .word-box {
