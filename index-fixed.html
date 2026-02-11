@@ -106,8 +106,12 @@
 
         /* 둥근 원형 - Inter 폰트, 진하게 */
         .inline-circle {
-            width: clamp(70px, 8vw, 120px);
-            height: clamp(70px, 8vw, 120px);
+            min-width: clamp(70px, 8vw, 120px);
+            min-height: clamp(70px, 8vw, 120px);
+            width: auto;
+            height: auto;
+            max-width: clamp(140px, 16vw, 200px);
+            max-height: clamp(140px, 16vw, 200px);
             background-color: #D8F0C1;
             border: clamp(2px, 0.3vw, 3px) solid #3a4a2a;
             border-radius: 50%;
@@ -116,16 +120,16 @@
             justify-content: center;
             flex-shrink: 0;
             font-family: 'Noto Sans KR', sans-serif;
-            font-size: clamp(22px, 2.8vw, 38px);
+            font-size: clamp(18px, 2.5vw, 34px);
             font-weight: 700;
             color: #2c2c2c;
             box-shadow: 2px 2px 0px 0px #000000;
-            padding: clamp(6px, 1vw, 14px);
+            padding: clamp(12px, 2vw, 20px);
             text-align: center;
-            line-height: 1.1;
-            word-break: keep-all;
-            overflow-wrap: break-word;
-            overflow: hidden;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: visible;
+            aspect-ratio: 1 / 1;
         }
 
         /* 단어 박스 - Inter 폰트로 통일 */
@@ -301,38 +305,35 @@
         function adjustCircleFontSize(element) {
             const text = element.textContent;
             // 화면 크기에 따른 기본 폰트 크기 설정
-            const baseSize = window.innerWidth > 1200 ? 38 : 
-                           window.innerWidth > 768 ? 28 : 
+            const baseSize = window.innerWidth > 1200 ? 34 : 
+                           window.innerWidth > 768 ? 24 : 
                            window.innerWidth > 600 ? 20 : 18;
             
             if (text.length >= 6) {
                 const parts = text.split('+');
                 if (parts.length === 2) {
+                    // 야행+와행 같은 경우: 줄바꿈으로 표시
                     element.innerHTML = parts[0] + '<br>+<br>' + parts[1];
+                    element.style.whiteSpace = 'normal';
                 } else {
                     element.textContent = text;
+                    element.style.whiteSpace = 'nowrap';
                 }
-                // 태블릿에서 더 작게 조정
-                const sizeFactor = window.innerWidth > 768 ? 0.50 : 0.45;
-                element.style.fontSize = `${baseSize * sizeFactor}px`;
-                element.style.whiteSpace = 'normal';
-                element.style.lineHeight = '0.95';
-                element.style.overflow = 'hidden';
-                element.style.display = 'flex';
-                element.style.flexDirection = 'column';
-                element.style.justifyContent = 'center';
-                element.style.padding = '4px';
-            } else if (text.length >= 3) {
-                element.style.fontSize = `${baseSize * 0.85}px`;
-                element.style.whiteSpace = 'normal';
+                element.style.fontSize = `${baseSize * 0.75}px`;
                 element.style.lineHeight = '1.1';
-                element.style.overflow = 'hidden';
+            } else if (text.length >= 3) {
+                element.style.fontSize = `${baseSize * 0.9}px`;
+                element.style.whiteSpace = 'nowrap';
+                element.style.lineHeight = '1.2';
             } else {
                 element.style.fontSize = `${baseSize}px`;
-                element.style.whiteSpace = 'normal';
-                element.style.lineHeight = '1.1';
-                element.style.overflow = 'hidden';
+                element.style.whiteSpace = 'nowrap';
+                element.style.lineHeight = '1.2';
             }
+            
+            // 원의 크기를 텍스트에 맞춰 자동 조정
+            element.style.display = 'inline-flex';
+            element.style.overflow = 'visible';
         }
     </script>
 </body>
