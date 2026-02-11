@@ -123,6 +123,7 @@
             line-height: 1.15;
             word-break: keep-all;
             overflow-wrap: break-word;
+            overflow: hidden;
         }
 
         /* 단어 박스 - Inter 폰트로 통일 */
@@ -205,7 +206,7 @@
                     <span style="visibility:hidden;">히라가나</span>
                     
                     <!-- 둥근 원형 1 -->
-                    <div class="inline-circle" id="circle1-text"></div>
+                    <div class="inline-circle" id="circle1-text" style="margin-left: 3vw;"></div>
                     
                     <!-- 둥근 원형 2 -->
                     <div class="inline-circle" id="circle2-text"></div>
@@ -295,32 +296,31 @@
             document.getElementById('word4').textContent = selected34[1];
         }
         
-        // 원 안 텍스트 길이에 따라 폰트 크기 조정
         function adjustCircleFontSize(element) {
             const text = element.textContent;
             const baseSize = window.innerWidth > 1200 ? 38 : window.innerWidth > 768 ? 30 : 22;
             
             if (text.length >= 6) {
-                // '야행+와행' 같은 긴 텍스트 - 줄바꿈하여 표시
                 const parts = text.split('+');
                 if (parts.length === 2) {
-                    // '+' 기준으로 줄바꿈
                     element.innerHTML = parts[0] + '<br>+' + parts[1];
                 } else {
                     element.textContent = text;
                 }
-                element.style.fontSize = `${baseSize * 0.45}px`;
+                element.style.fontSize = `${baseSize * 0.35}px`;
                 element.style.whiteSpace = 'normal';
-                element.style.lineHeight = '1.15';
+                element.style.lineHeight = '1.2';
+                element.style.overflow = 'hidden';
             } else if (text.length >= 3) {
-                // 일반 행 ('아행', '카행' 등)
                 element.style.fontSize = `${baseSize * 0.85}px`;
                 element.style.whiteSpace = 'normal';
                 element.style.lineHeight = '1.15';
+                element.style.overflow = 'hidden';
             } else {
                 element.style.fontSize = `${baseSize}px`;
                 element.style.whiteSpace = 'normal';
                 element.style.lineHeight = '1.15';
+                element.style.overflow = 'hidden';
             }
         }
     </script>
