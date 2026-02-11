@@ -301,32 +301,42 @@
         // 원 안 텍스트 길이에 따라 폰트 크기 조정
         function adjustCircleFontSize(element) {
             const text = element.textContent;
-            const baseSize = window.innerWidth > 1200 ? 38 : window.innerWidth > 768 ? 30 : 22;
+            // 화면 크기에 따른 기본 폰트 크기 설정
+            const baseSize = window.innerWidth > 1200 ? 32 : 
+                           window.innerWidth > 768 ? 22 : 
+                           window.innerWidth > 600 ? 18 : 16;
             
             if (text.length >= 6) {
-                // '야행+와행' 같은 긴 텍스트 - 줄바꿈하여 표시
                 const parts = text.split('+');
                 if (parts.length === 2) {
-                    element.innerHTML = parts[0] + '<br>+' + parts[1];
+                    // 야행+와행 같은 경우: 줄바꿈으로 표시하고 글자 크기를 많이 줄임
+                    element.innerHTML = parts[0] + '<br>+<br>' + parts[1];
+                    element.style.whiteSpace = 'normal';
+                    // 화면 크기별로 더 작은 폰트 사용
+                    const sizeFactor = window.innerWidth > 1200 ? 0.55 : 
+                                     window.innerWidth > 768 ? 0.45 : 
+                                     window.innerWidth > 600 ? 0.40 : 0.38;
+                    element.style.fontSize = `${baseSize * sizeFactor}px`;
+                    element.style.lineHeight = '0.95';
                 } else {
                     element.textContent = text;
+                    element.style.whiteSpace = 'nowrap';
+                    element.style.fontSize = `${baseSize * 0.65}px`;
+                    element.style.lineHeight = '1.1';
                 }
-                element.style.fontSize = `${baseSize * 0.35}px`;
-                element.style.whiteSpace = 'normal';
-                element.style.lineHeight = '1.2';
-                element.style.overflow = 'hidden';
-                element.style.padding = 'clamp(4px, 0.5vw, 8px)';
             } else if (text.length >= 3) {
                 element.style.fontSize = `${baseSize * 0.85}px`;
-                element.style.whiteSpace = 'normal';
+                element.style.whiteSpace = 'nowrap';
                 element.style.lineHeight = '1.15';
-                element.style.overflow = 'hidden';
             } else {
                 element.style.fontSize = `${baseSize}px`;
-                element.style.whiteSpace = 'normal';
+                element.style.whiteSpace = 'nowrap';
                 element.style.lineHeight = '1.15';
-                element.style.overflow = 'hidden';
             }
+            
+            // 원의 크기는 고정이므로 overflow hidden 유지
+            element.style.display = 'inline-flex';
+            element.style.overflow = 'hidden';
         }
     </script>
 </body>
