@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Inter:wght@400;700;900&family=Jeju+Gothic&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #F8FAED;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 95vw;
+            height: 95vh;
+            max-width: none;
+            margin: 0;
+            padding: 2vh 2vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* 제목 - 투명하게 */
+        .title {
+            text-align: center;
+            font-size: clamp(32px, 5vw, 64px);
+            font-weight: 700;
+            color: transparent;
+            margin-bottom: 8vh;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+            font-family: 'Jeju Gothic', sans-serif;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* 문제 섹션 */
+        .question-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 0;
+            align-items: flex-start;
+            padding-left: 8vw;
+            width: 100%;
+        }
+
+        .question-section:first-of-type {
+            margin-bottom: 5vh;
+        }
+
+        .question-section:nth-of-type(2) {
+            margin-top: 0vh;
+        }
+
+        .question-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 1vh;
+            width: 100%;
+        }
+
+        .question-section:nth-of-type(2) .question-row {
+            margin-bottom: 12vh;
+        }
+
+        .question-number {
+            font-size: clamp(20px, 2.5vw, 36px);
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-right: clamp(8px, 1vw, 12px);
+            flex-shrink: 0;
+            font-family: 'Jeju Gothic', sans-serif;
+        }
+
+        .question-text {
+            font-size: clamp(20px, 2.5vw, 36px);
+            font-weight: 500;
+            color: #2c2c2c;
+            line-height: 1.6;
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.5vw, 18px);
+            flex-wrap: wrap;
+            font-family: 'Jeju Gothic', sans-serif;
+        }
+
+        /* 둥근 원형 - Inter 폰트, 진하게 */
+        .inline-circle {
+            width: clamp(70px, 8vw, 120px);
+            height: clamp(70px, 8vw, 120px);
+            background-color: #D8F0C1;
+            border: clamp(2px, 0.3vw, 3px) solid #3a4a2a;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: clamp(22px, 2.8vw, 38px);
+            font-weight: 700;
+            color: #2c2c2c;
+            box-shadow: 2px 2px 0px 0px #000000;
+            padding: clamp(6px, 1vw, 14px);
+            text-align: center;
+            line-height: 1.1;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+            overflow: hidden;
+        }
+
+        /* 단어 박스 - Inter 폰트로 통일 */
+        .words-container {
+            display: flex;
+            justify-content: flex-start;
+            gap: clamp(15px, 2vw, 32px);
+            margin: 3.5vh 0 0 clamp(28px, 3.5vw, 48px);
+            flex-wrap: wrap;
+            padding: 0;
+            width: calc(100% - clamp(28px, 3.5vw, 48px));
+        }
+
+        .word-box {
+            width: clamp(150px, 16vw, 235px);
+            height: clamp(65px, 7vw, 92px);
+            background-color: #D8F0C1;
+            border: clamp(2px, 0.3vw, 3px) solid #3a4a2a;
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: clamp(22px, 2.8vw, 38px);
+            font-weight: 700;
+            color: #2c2c2c;
+            box-shadow: 2px 2px 0px 0px #000000;
+            padding: 8px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* 번호 원형 배지 - 삭제됨 */
+        .word-number {
+            display: none;
+        }
+
+        /* 버튼 */
+        .button-container {
+            text-align: center;
+            margin-top: 2vh;
+            flex-shrink: 0;
+        }
+
+        .generate-btn {
+            background-color: #D8F0C1;
+            border: none;
+            padding: clamp(10px, 1.2vh, 14px) clamp(30px, 4vw, 55px);
+            font-size: clamp(16px, 1.8vw, 24px);
+            font-weight: 900;
+            color: #2c2c2c;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s;
+        }
+
+        .generate-btn:hover {
+            background-color: #c8e0b1;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+        }
+
+        .generate-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">문자와 국토를 통한 일본 탐색</div>
+
+        <!-- 1번 문제 -->
+        <div class="question-section">
+            <div class="question-row">
+                <div class="question-number"></div>
+                <div class="question-text">
+                    <span style="visibility:hidden;">히라가나</span>
+                    
+                    <!-- 둥근 원형 1 -->
+                    <div class="inline-circle" id="circle1-text" style="margin-left: 3vw;"></div>
+                    
+                    <!-- 둥근 원형 2 -->
+                    <div class="inline-circle" id="circle2-text"></div>
+                    
+                    <span style="visibility:hidden;">에 해당하는 10자를 쓰시오.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2번 문제 -->
+        <div class="question-section">
+            <div class="question-row">
+                <div class="question-number"></div>
+                <div class="question-text">
+                </div>
+            </div>
+            <div class="words-container">
+                <div class="word-box">
+                    <div class="word-number">1</div>
+                    <span id="word1"></span>
+                </div>
+                <div class="word-box">
+                    <div class="word-number">2</div>
+                    <span id="word2"></span>
+                </div>
+                <div class="word-box">
+                    <div class="word-number">3</div>
+                    <span id="word3"></span>
+                </div>
+                <div class="word-box">
+                    <div class="word-number">4</div>
+                    <span id="word4"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 버튼 -->
+        <div class="button-container">
+            <button class="generate-btn" id="generateBtn" onclick="generateTest()">Click Here</button>
+        </div>
+    </div>
+
+    <script>
+        // 데이터 정의
+        const rows = ['아행', '카행', '사행', '타행', '나행', '하행', '마행', '라행', '야행+와행'];
+
+        // 박스별 단어 풀
+        const pool12 = ['홋카이도', '혼슈', '시코쿠', '규슈'];
+        const pool34 = ['도쿄', '오사카', '교토', '후쿠시마', '히로시마', '후지산', '삿포로', '오키나와'];
+
+        // 랜덤 선택 함수 (중복 없이 확실하게)
+        function getRandomItems(array, count) {
+            const arrayCopy = [...array];
+            const result = [];
+            for (let i = 0; i < count; i++) {
+                const randomIndex = Math.floor(Math.random() * arrayCopy.length);
+                result.push(arrayCopy[randomIndex]);
+                arrayCopy.splice(randomIndex, 1);
+            }
+            return result;
+        }
+
+        // 테스트 생성 함수
+        function generateTest() {
+            // 1번 문제: 행 2개 랜덤 선택 (중복 없이)
+            const selectedRows = getRandomItems(rows, 2);
+            
+            // 원형에 행 이름 채우기
+            const circle1 = document.getElementById('circle1-text');
+            const circle2 = document.getElementById('circle2-text');
+            
+            circle1.textContent = selectedRows[0];
+            circle2.textContent = selectedRows[1];
+            
+            // 텍스트 길이에 따라 폰트 크기 조정
+            adjustCircleFontSize(circle1);
+            adjustCircleFontSize(circle2);
+
+            // 박스 1, 2: 홋카이도/혼슈/시코쿠/규슈 중 겹치지 않게 2개
+            const selected12 = getRandomItems(pool12, 2);
+            document.getElementById('word1').textContent = selected12[0];
+            document.getElementById('word2').textContent = selected12[1];
+
+            // 박스 3, 4: 도시 풀에서 겹치지 않게 2개
+            const selected34 = getRandomItems(pool34, 2);
+            document.getElementById('word3').textContent = selected34[0];
+            document.getElementById('word4').textContent = selected34[1];
+        }
+        
+        function adjustCircleFontSize(element) {
+            const text = element.textContent;
+            // 화면 크기에 따른 기본 폰트 크기 설정
+            const baseSize = window.innerWidth > 1200 ? 38 : 
+                           window.innerWidth > 768 ? 28 : 
+                           window.innerWidth > 600 ? 20 : 18;
+            
+            if (text.length >= 6) {
+                const parts = text.split('+');
+                if (parts.length === 2) {
+                    element.innerHTML = parts[0] + '<br>+<br>' + parts[1];
+                } else {
+                    element.textContent = text;
+                }
+                // 태블릿에서 더 작게 조정
+                const sizeFactor = window.innerWidth > 768 ? 0.50 : 0.45;
+                element.style.fontSize = `${baseSize * sizeFactor}px`;
+                element.style.whiteSpace = 'normal';
+                element.style.lineHeight = '0.95';
+                element.style.overflow = 'hidden';
+                element.style.display = 'flex';
+                element.style.flexDirection = 'column';
+                element.style.justifyContent = 'center';
+                element.style.padding = '4px';
+            } else if (text.length >= 3) {
+                element.style.fontSize = `${baseSize * 0.85}px`;
+                element.style.whiteSpace = 'normal';
+                element.style.lineHeight = '1.1';
+                element.style.overflow = 'hidden';
+            } else {
+                element.style.fontSize = `${baseSize}px`;
+                element.style.whiteSpace = 'normal';
+                element.style.lineHeight = '1.1';
+                element.style.overflow = 'hidden';
+            }
+        }
+    </script>
+</body>
+</html>
