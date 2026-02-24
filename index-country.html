@@ -250,12 +250,14 @@
     </div>
 
     <script>
-        // 데이터 정의
-        const rows = ['아행', '카행', '사행', '타행', '나행', '하행', '마행', '라행', '야행+와행'];
+        // 데이터 정의 - 첫번째/두번째 행 그룹 분리
+        const rows1 = ['아행', '카행', '사행', '타행'];
+        const rows2 = ['나행', '하행', '마행', '라행', '야행+와행'];
 
         // 박스별 단어 풀
         const pool12 = ['홋카이도', '혼슈', '시코쿠', '큐슈'];
-        const pool34 = ['도쿄', '오사카', '교토', '후쿠시마', '히로시마', '후지산', '삿포로', '오키나와'];
+        const pool3 = ['도쿄', '교토', '삿포로'];
+        const pool4 = ['오사카', '오키나와', '후지산', '히로시마'];
 
         // 랜덤 선택 함수 (중복 없이 확실하게)
         function getRandomItems(array, count) {
@@ -271,15 +273,16 @@
 
 // 테스트 생성 함수
         function generateTest() {
-            // 1번 문제: 행 2개 랜덤 선택 (중복 없이)
-            const selectedRows = getRandomItems(rows, 2);
+            // 1번 문제: 첫번째 행(아/카/사/타행), 두번째 행(나/하/마/라/야+와행) 각 그룹에서 1개씩 선택
+            const selectedRow1 = rows1[Math.floor(Math.random() * rows1.length)];
+            const selectedRow2 = rows2[Math.floor(Math.random() * rows2.length)];
             
             // 원형에 행 이름 채우기
             const circle1 = document.getElementById('circle1-text');
             const circle2 = document.getElementById('circle2-text');
             
-            circle1.textContent = selectedRows[0];
-            circle2.textContent = selectedRows[1];
+            circle1.textContent = selectedRow1;
+            circle2.textContent = selectedRow2;
             
             // 텍스트 길이에 따라 폰트 크기 조정
             adjustCircleFontSize(circle1);
@@ -290,10 +293,11 @@
             document.getElementById('word1').textContent = selected12[0];
             document.getElementById('word2').textContent = selected12[1];
 
-            // 박스 3, 4: 도시 풀에서 겹치지 않게 2개
-            const selected34 = getRandomItems(pool34, 2);
-            document.getElementById('word3').textContent = selected34[0];
-            document.getElementById('word4').textContent = selected34[1];
+            // 박스 3: 도쿄/교토/삿포로 중 1개
+            document.getElementById('word3').textContent = pool3[Math.floor(Math.random() * pool3.length)];
+
+            // 박스 4: 오사카/오키나와/후지산/히로시마 중 1개
+            document.getElementById('word4').textContent = pool4[Math.floor(Math.random() * pool4.length)];
         }
         
         function adjustCircleFontSize(element) {
