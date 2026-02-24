@@ -13,10 +13,8 @@
     --green-light: #c8ddb0;
     --green-mid: #8fb96e;
     --green-dark: #5a8a3c;
-    --green-btn: #7aab52;
     --text: #2d2d2d;
     --text-light: #666;
-    --border: #d0c9b0;
     --shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
 
@@ -41,28 +39,27 @@
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
-    padding: 24px 20px 20px;
+    padding: 32px 24px 24px;
   }
 
   /* ── HEADER ── */
   .test-header {
     text-align: center;
-    margin-bottom: 18px;
+    margin-bottom: 28px;
   }
   .test-header h1 {
-    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 900;
     color: var(--text);
     letter-spacing: -1px;
-    white-space: nowrap;
   }
 
   /* ── QUESTION BLOCK ── */
   .question-block {
     background: var(--card);
     border-radius: 16px;
-    padding: 18px 24px;
-    margin-bottom: 14px;
+    padding: 28px 32px;
+    margin-bottom: 18px;
     box-shadow: var(--shadow);
   }
 
@@ -70,81 +67,80 @@
   .q-title-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     flex-wrap: nowrap;
   }
 
+  /* 이전 디자인: 심플 사각 번호 */
   .q-label {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
     background: #fafff6;
     border: 2px solid var(--green-light);
     border-radius: 8px;
     font-weight: 900;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--text);
     flex-shrink: 0;
   }
 
   /* ── Q1 INSTRUCTION ── */
   .q-instruction {
-    font-size: clamp(0.95rem, 2.2vw, 1.5rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
     font-weight: 700;
     color: var(--text);
     line-height: 1.5;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
   }
 
-  /* ── 행 배지 ── */
+  /* ── 행 배지 (큰 원) ── */
   .row-badge-inline {
     background: var(--green-light);
-    border: 2px solid var(--green-mid);
+    border: 2.5px solid var(--green-mid);
     color: var(--green-dark);
     border-radius: 50%;
-    width: clamp(64px, 9vw, 110px);
-    height: clamp(64px, 9vw, 110px);
+    width: clamp(80px, 11vw, 130px);
+    height: clamp(80px, 11vw, 130px);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: clamp(0.85rem, 1.8vw, 1.4rem);
+    font-size: clamp(1rem, 2.2vw, 1.6rem);
     white-space: nowrap;
     flex-shrink: 0;
     text-align: center;
     line-height: 1.2;
   }
   .row-badge-inline.long {
-    font-size: clamp(0.65rem, 1.3vw, 0.95rem);
+    font-size: clamp(0.75rem, 1.5vw, 1.1rem);
     white-space: normal;
-    text-align: center;
-    line-height: 1.25;
-    padding: 6px;
+    padding: 8px;
   }
 
   /* ── Q2 GRID ── */
   .word-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-top: 14px;
+    gap: 14px;
+    margin-top: 20px;
   }
 
   .word-card-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
   }
 
   .word-num {
-    font-size: clamp(0.85rem, 1.6vw, 1.15rem);
+    font-size: clamp(0.95rem, 1.8vw, 1.25rem);
     color: var(--green-mid);
     display: flex;
     align-items: center;
@@ -152,6 +148,7 @@
     font-weight: 600;
   }
 
+  /* 이전 디자인: 심플 라운드 카드 */
   .word-card {
     border: 2px solid var(--green-mid);
     border-radius: 12px;
@@ -160,12 +157,11 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: clamp(10px, 2vw, 18px) 8px;
-    min-height: clamp(48px, 7vw, 72px);
+    padding: clamp(20px, 3.5vw, 36px) 8px;
   }
 
   .word-korean {
-    font-size: clamp(1rem, 2.5vw, 1.6rem);
+    font-size: clamp(1.1rem, 2.8vw, 1.8rem);
     font-weight: 700;
     color: var(--green-dark);
     line-height: 1.2;
@@ -176,7 +172,7 @@
   .btn-row {
     display: flex;
     justify-content: center;
-    margin-top: 14px;
+    margin-top: 20px;
     padding-bottom: 8px;
   }
 
@@ -185,8 +181,8 @@
     color: var(--green-dark);
     border: none;
     border-radius: 10px;
-    padding: 13px 52px;
-    font-size: clamp(0.88rem, 1.6vw, 1.05rem);
+    padding: 16px 64px;
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
     font-weight: 700;
     font-family: 'Noto Sans KR', sans-serif;
     cursor: pointer;
@@ -197,48 +193,35 @@
   .btn-click-here:hover  { background: var(--green-mid); color: white; }
   .btn-click-here:active { transform: scale(0.97); }
 
-  /* ── TABLET PORTRAIT (768px 이하) ── */
+  /* ── TABLET (768px 이하) ── */
   @media (max-width: 768px) {
-    #test-screen { padding: 18px 14px 16px; }
-
-    .test-header h1 { font-size: 1.6rem; }
-
-    .question-block { padding: 14px 16px; border-radius: 14px; }
-
-    .q-label { width: 34px; height: 34px; min-width: 34px; font-size: 1rem; }
-
-    .q-instruction { font-size: 1rem; flex-wrap: wrap; }
-
-    .row-badge-inline {
-      width: 72px; height: 72px;
-      font-size: 0.9rem;
-    }
+    #test-screen { padding: 20px 16px 16px; }
+    .test-header h1 { font-size: 1.8rem; }
+    .question-block { padding: 20px; }
+    .q-label { width: 40px; height: 40px; min-width: 40px; font-size: 1.2rem; }
+    .q-instruction { font-size: 1rem; }
+    .row-badge-inline { width: 72px; height: 72px; font-size: 0.9rem; }
     .row-badge-inline.long { font-size: 0.7rem; }
-
-    .word-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
+    .word-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .word-korean { font-size: 1.15rem; }
   }
 
   /* ── SMALL PHONE (480px 이하) ── */
   @media (max-width: 480px) {
-    .test-header h1 { font-size: 1.3rem; }
+    .test-header h1 { font-size: 1.5rem; }
     .q-instruction  { font-size: 0.92rem; }
     .row-badge-inline { width: 60px; height: 60px; font-size: 0.8rem; }
     .word-korean { font-size: 1rem; }
-    .btn-click-here { padding: 11px 36px; font-size: 0.88rem; }
+    .btn-click-here { padding: 13px 40px; font-size: 0.9rem; }
   }
 
-  /* ── LANDSCAPE TABLET (height 제한 환경) ── */
+  /* ── LANDSCAPE / HEIGHT 제한 ── */
   @media (max-height: 700px) {
     #test-screen { padding: 12px 20px 10px; }
-    .test-header  { margin-bottom: 10px; }
-    .question-block { padding: 12px 20px; margin-bottom: 10px; }
-    .word-grid    { gap: 8px; margin-top: 10px; }
-    .btn-row      { margin-top: 8px; }
+    .test-header  { margin-bottom: 12px; }
+    .question-block { padding: 14px 24px; margin-bottom: 12px; }
+    .word-grid    { gap: 8px; margin-top: 12px; }
+    .btn-row      { margin-top: 10px; }
   }
 </style>
 </head>
@@ -274,9 +257,9 @@
 <script>
 /* =====================================================
    ✏️ 여기 단어만 바꾸세요!
-   상: 어려운 단어 (1개 출제)
-   중: 보통 단어  (2개 출제)
-   하: 쉬운 단어  (1개 출제)
+   sang: 어려운 단어 (1개 출제)
+   jung: 보통 단어  (2개 출제)
+   ha:   쉬운 단어  (1개 출제)
 ===================================================== */
 const WORDS = {
   sang: ['병원', '우체국', '학교', '도서관'],
@@ -314,15 +297,17 @@ function generateTest() {
   const allWords = [
     ...pick(WORDS.sang, 1),
     ...pick(WORDS.jung, 2),
-    ...pick(WORDS.ha, 1),
+    ...pick(WORDS.ha,   1),
   ];
+
+  /* 카드 순서 섞기 */
   for (let i = allWords.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [allWords[i], allWords[j]] = [allWords[j], allWords[i]];
   }
 
-  const nums    = ['①','②','③','④'];
-  const gridEl  = document.getElementById('q2-word-grid');
+  const nums   = ['①','②','③','④'];
+  const gridEl = document.getElementById('q2-word-grid');
   gridEl.innerHTML = '';
 
   allWords.forEach((word, idx) => {
