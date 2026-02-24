@@ -157,11 +157,12 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: clamp(20px, 3.5vw, 36px) 8px;
+    min-height: clamp(80px, 12vw, 130px);
+    padding: 16px 8px;
   }
 
   .word-korean {
-    font-size: clamp(1.1rem, 2.8vw, 1.8rem);
+    font-size: clamp(1.2rem, 2.8vw, 2rem);
     font-weight: 700;
     color: var(--green-dark);
     line-height: 1.2;
@@ -203,6 +204,7 @@
     .row-badge-inline { width: 72px; height: 72px; font-size: 0.9rem; }
     .row-badge-inline.long { font-size: 0.7rem; }
     .word-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .word-card { min-height: 70px; }
     .word-korean { font-size: 1.15rem; }
   }
 
