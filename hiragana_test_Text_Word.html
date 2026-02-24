@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>히라가나 수행평가</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+  :root {
+    --bg: #f5f2e8;
+    --card: #ffffff;
+    --green-light: #c8ddb0;
+    --green-mid: #8fb96e;
+    --green-dark: #5a8a3c;
+    --green-btn: #7aab52;
+    --text: #2d2d2d;
+    --text-light: #666;
+    --border: #d0c9b0;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  /* ── TEST SCREEN ── */
+  #test-screen {
+    padding: 16px 20px 0px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .test-header { text-align: center; margin-bottom: 10px; }
+  .test-header h1 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--text);
+    letter-spacing: -1px;
+  }
+
+  .question-block {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 14px 20px;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow);
+  }
+  .question-block.q1-block {
+    padding: 14px 20px;
+  }
+
+  .q-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: clamp(8px, 1.5vw, 14px);
+  }
+
+  .q-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(34px, 4vw, 48px);
+    height: clamp(34px, 4vw, 48px);
+    min-width: clamp(34px, 4vw, 48px);
+    background: #fafff6;
+    border: 2px solid var(--green-light);
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    color: var(--text);
+    flex-shrink: 0;
+  }
+
+  /* 행 배지 */
+  .row-badge-inline {
+    background: var(--green-light);
+    border: 2px solid var(--green-mid);
+    color: var(--green-dark);
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1rem;
+    flex-shrink: 0;
+    padding: 4px;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .row-badge-inline.long {
+    font-size: clamp(0.75rem, 1.5vw, 1.1rem);
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .q-instruction {
+    font-size: clamp(1rem, 2.8vw, 1.9rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .word-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .word-card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .word-num {
+    font-size: 0.9rem;
+    color: var(--green-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .word-card {
+    border: 2px solid var(--green-mid);
+    border-radius: 12px;
+    background: var(--green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    padding: 10px 6px;
+  }
+
+  .word-korean {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  /* Click Here */
+  .btn-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
+
+  .btn-click-here {
+    background: var(--green-light);
+    color: var(--green-dark);
+    border: none;
+    border-radius: 10px;
+    padding: clamp(12px, 2vw, 16px) clamp(32px, 6vw, 60px);
+    font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+    font-weight: 700;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.5px;
+  }
+  .btn-click-here:hover { background: var(--green-mid); color: white; }
+  .btn-click-here:active { transform: scale(0.97); }
+
+  @media (max-width: 480px) {
+    .word-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div id="test-screen">
+  <div class="test-header">
+    <h1>히라가나 쓰기</h1>
+  </div>
+
+  <!-- Q1 -->
+  <div class="question-block q1-block">
+    <div class="q-title-row">
+      <span class="q-label">1</span>
+      <span class="q-instruction">히라가나 <span id="q1-badges-inline"></span> 에 해당하는 10자를 쓰시오.</span>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-block">
+    <div class="q-title-row">
+      <span class="q-label">2</span>
+      <span class="q-instruction">다음 단어에 해당하는 일본어를 히라가나로 쓰시오.</span>
+    </div>
+    <div class="word-grid" id="q2-word-grid"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-click-here" onclick="generateTest()">Click Here</button>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   ✏️ 여기 단어만 바꾸세요!
+   상: 어려운 단어 (1개 출제)
+   중: 보통 단어  (2개 출제)
+   하: 쉬운 단어  (1개 출제)
+===================================================== */
+const WORDS = {
+  sang: ['병원', '우체국', '학교', '도서관'],
+  jung: ['우표', '고등학교', '모자', '산책', '공원', '선생님'],
+  ha:   ['가방', '가족', '오후', '야구', '의자', '책상']
+};
+/* ===================================================== */
+
+const FRONT_ROWS = [
+  { name: '아행' }, { name: '카행' }, { name: '사행' },
+  { name: '타행' }, { name: '나행' },
+];
+const BACK_ROWS = [
+  { name: '하행' }, { name: '마행' },
+  { name: '라행' }, { name: '야행+와행' },
+];
+
+function pick(arr, n) {
+  const copy = [...arr], result = [];
+  while (result.length < n && copy.length) {
+    const i = Math.floor(Math.random() * copy.length);
+    result.push(copy.splice(i, 1)[0]);
+  }
+  return result;
+}
+
+function generateTest() {
+  const frontRow = pick(FRONT_ROWS, 1)[0];
+  const backRow  = pick(BACK_ROWS, 1)[0];
+
+  document.getElementById('q1-badges-inline').innerHTML =
+    `<span class="row-badge-inline ${frontRow.name.length > 3 ? 'long' : ''}">${frontRow.name}</span>
+     <span class="row-badge-inline ${backRow.name.length > 3 ? 'long' : ''}">${backRow.name}</span>`;
+
+  const allWords = [
+    ...pick(WORDS.sang, 1),
+    ...pick(WORDS.jung, 2),
+    ...pick(WORDS.ha, 1),
+  ];
+  for (let i = allWords.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [allWords[i], allWords[j]] = [allWords[j], allWords[i]];
+  }
+
+  const nums = ['①','②','③','④'];
+  const gridEl = document.getElementById('q2-word-grid');
+  gridEl.innerHTML = '';
+  allWords.forEach((word, idx) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'word-card-wrap';
+    wrap.innerHTML = `
+      <div class="word-num">${nums[idx]}</div>
+      <div class="word-card"><div class="word-korean">${word}</div></div>
+    `;
+    gridEl.appendChild(wrap);
+  });
+}
+
+// 페이지 열면 바로 문제 생성
+generateTest();
+</script>
+</body>
+</html>
