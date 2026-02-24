@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>히라가나 수행평가 - 일본 지명</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;700&display=swap');
@@ -13,173 +13,169 @@
     --green-light: #c8ddb0;
     --green-mid: #8fb96e;
     --green-dark: #5a8a3c;
-    --green-btn: #7aab52;
     --text: #2d2d2d;
     --text-light: #666;
-    --border: #d0c9b0;
     --shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html, body {
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-  }
-
   body {
     font-family: 'Noto Sans KR', sans-serif;
     background: var(--bg);
     color: var(--text);
-    /* Genially iframe 환경에서 스크롤 허용 */
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
   }
 
-  /* ── MAIN WRAPPER ── */
-  #test-screen {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px 20px 20px;
+  /* 전체 컨테이너 — 참고 파일 방식: 100vh flex space-between */
+  .container {
+    width: 95vw;
+    height: 95vh;
+    padding: 2vh 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 960px;
   }
 
-  /* ── HEADER ── */
+  /* 제목 */
   .test-header {
     text-align: center;
-    margin-bottom: 18px;
+    flex-shrink: 0;
   }
   .test-header h1 {
-    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
     font-weight: 900;
     color: var(--text);
     letter-spacing: -1px;
-    white-space: nowrap;
   }
 
-  /* ── QUESTION BLOCK ── */
+  /* 문제 블록 */
   .question-block {
     background: var(--card);
-    border-radius: 16px;
-    padding: 18px 24px;
-    margin-bottom: 14px;
+    border-radius: 18px;
+    padding: clamp(14px, 2.5vh, 28px) clamp(20px, 4vw, 44px);
     box-shadow: var(--shadow);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1vh 0;
   }
 
-  /* ── Q-TITLE ROW ── */
   .q-title-row {
     display: flex;
     align-items: center;
-    gap: 12px;
     flex-wrap: nowrap;
+    gap: clamp(8px, 1.5vw, 14px);
   }
 
   .q-label {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+    width: clamp(34px, 4vw, 48px);
+    height: clamp(34px, 4vw, 48px);
+    min-width: clamp(34px, 4vw, 48px);
     background: #fafff6;
     border: 2px solid var(--green-light);
     border-radius: 8px;
     font-weight: 900;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.35rem);
     color: var(--text);
     flex-shrink: 0;
   }
 
-  /* ── Q1 INSTRUCTION ── */
-  .q-instruction {
-    font-size: clamp(0.95rem, 2.2vw, 1.5rem);
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.5;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;          /* 태블릿에서 줄바꿈 허용 */
-    gap: 8px;
-  }
-
-  /* ── 행 배지 ── */
+  /* 행 배지 */
   .row-badge-inline {
     background: var(--green-light);
     border: 2px solid var(--green-mid);
     color: var(--green-dark);
     border-radius: 50%;
-    width: clamp(64px, 9vw, 110px);
-    height: clamp(64px, 9vw, 110px);
+    width: clamp(72px, 9vw, 120px);
+    height: clamp(72px, 9vw, 120px);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: clamp(0.85rem, 1.8vw, 1.4rem);
+    font-size: clamp(1rem, 2.2vw, 1.7rem);
     white-space: nowrap;
     flex-shrink: 0;
+    overflow: hidden;
+    padding: 4px;
     text-align: center;
     line-height: 1.2;
   }
   .row-badge-inline.long {
-    font-size: clamp(0.65rem, 1.3vw, 0.95rem);
+    font-size: clamp(0.7rem, 1.3vw, 1rem);
     white-space: normal;
-    text-align: center;
     line-height: 1.25;
-    padding: 6px;
   }
 
-  /* ── Q2 GRID ── */
+  .q-instruction {
+    font-size: clamp(1rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  /* Q2 그리드 */
   .word-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-top: 14px;
+    gap: clamp(10px, 2vw, 20px);
+    margin-top: clamp(10px, 1.5vh, 18px);
   }
 
   .word-card-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
   }
 
   .word-num {
-    font-size: clamp(0.85rem, 1.6vw, 1.15rem);
+    font-size: clamp(0.9rem, 1.6vw, 1.2rem);
     color: var(--green-mid);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3px;
     font-weight: 600;
   }
 
   .word-card {
     border: 2px solid var(--green-mid);
-    border-radius: 12px;
+    border-radius: 14px;
     background: var(--green-light);
     display: flex;
     align-items: center;
     justify-content: center;
+    aspect-ratio: 2 / 1;
     width: 100%;
-    padding: clamp(10px, 2vw, 18px) 8px;
-    min-height: clamp(48px, 7vw, 72px);
+    padding: 8px;
   }
 
   .word-korean {
-    font-size: clamp(1rem, 2.5vw, 1.6rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.8rem);
     font-weight: 700;
     color: var(--green-dark);
     line-height: 1.2;
     text-align: center;
   }
 
-  /* ── BUTTON ── */
+  /* 버튼 */
   .btn-row {
-    display: flex;
-    justify-content: center;
-    margin-top: 14px;
-    padding-bottom: 8px;
+    text-align: center;
+    flex-shrink: 0;
   }
 
   .btn-click-here {
@@ -187,75 +183,41 @@
     color: var(--green-dark);
     border: none;
     border-radius: 10px;
-    padding: 13px 52px;
-    font-size: clamp(0.88rem, 1.6vw, 1.05rem);
+    padding: clamp(10px, 1.5vh, 16px) clamp(32px, 5vw, 60px);
+    font-size: clamp(0.9rem, 1.6vw, 1.05rem);
     font-weight: 700;
     font-family: 'Noto Sans KR', sans-serif;
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
     letter-spacing: 0.5px;
-    touch-action: manipulation;   /* 태블릿 터치 딜레이 제거 */
+    box-shadow: 0 2px 8px rgba(90,138,60,0.2);
   }
-  .btn-click-here:hover  { background: var(--green-mid); color: white; }
+  .btn-click-here:hover { background: var(--green-mid); color: white; }
   .btn-click-here:active { transform: scale(0.97); }
 
-  /* ── TABLET PORTRAIT (768px 이하) ── */
-  @media (max-width: 768px) {
-    #test-screen { padding: 18px 14px 16px; }
-
-    .test-header h1 { font-size: 1.6rem; }
-
-    .question-block { padding: 14px 16px; border-radius: 14px; }
-
-    .q-label { width: 34px; height: 34px; min-width: 34px; font-size: 1rem; }
-
-    .q-instruction { font-size: 1rem; flex-wrap: wrap; }
-
-    .row-badge-inline {
-      width: 72px; height: 72px;
-      font-size: 0.9rem;
-    }
-    .row-badge-inline.long { font-size: 0.7rem; }
-
-    .word-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .word-korean { font-size: 1.15rem; }
-  }
-
-  /* ── SMALL PHONE (480px 이하) ── */
   @media (max-width: 480px) {
-    .test-header h1 { font-size: 1.3rem; }
-    .q-instruction  { font-size: 0.92rem; }
-    .row-badge-inline { width: 60px; height: 60px; font-size: 0.8rem; }
-    .word-korean { font-size: 1rem; }
-    .btn-click-here { padding: 11px 36px; font-size: 0.88rem; }
-  }
-
-  /* ── LANDSCAPE TABLET (height 제한 환경) ── */
-  @media (max-height: 700px) {
-    #test-screen { padding: 12px 20px 10px; }
-    .test-header  { margin-bottom: 10px; }
-    .question-block { padding: 12px 20px; margin-bottom: 10px; }
-    .word-grid    { gap: 8px; margin-top: 10px; }
-    .btn-row      { margin-top: 8px; }
+    .word-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
 <body>
 
-<div id="test-screen">
+<div class="container">
+
+  <!-- 제목 -->
   <div class="test-header">
     <h1>히라가나 쓰기</h1>
   </div>
 
   <!-- Q1 -->
-  <div class="question-block q1-block">
+  <div class="question-block">
     <div class="q-title-row">
       <span class="q-label">1</span>
-      <span class="q-instruction">히라가나 <span id="q1-badges-inline"></span> 에 해당하는 10자를 쓰시오.</span>
+      <span class="q-instruction">
+        히라가나&nbsp;
+        <span id="q1-badges-inline"></span>
+        &nbsp;에 해당하는 10자를 쓰시오.
+      </span>
     </div>
   </div>
 
@@ -268,24 +230,19 @@
     <div class="word-grid" id="q2-word-grid"></div>
   </div>
 
+  <!-- 버튼 -->
   <div class="btn-row">
     <button class="btn-click-here" onclick="generateTest()">Click Here</button>
   </div>
+
 </div>
 
 <script>
-/* =====================================================
-   ✏️ 여기 단어만 바꾸세요!
-   island: 일본 4대 섬 (2개 출제)
-   sang:   어려운 지명 (1개 출제)
-   ha:     쉬운 지명 (1개 출제)
-===================================================== */
 const WORDS = {
   island: ['홋카이도', '혼슈', '시코쿠', '큐슈'],
-  sang:   ['도쿄', '오사카', '교토', '삿포로'],
-  ha:     ['히로시마', '후쿠오카', '후쿠시마', '오키나와', '후지산']
+  sang:   ['도쿄', '교토', '삿포로'],
+  ha:     ['오사카', '히로시마', '후쿠오카', '후쿠시마', '오키나와', '후지산']
 };
-/* ===================================================== */
 
 const FRONT_ROWS = [
   { name: '아행' }, { name: '카행' }, { name: '사행' },
@@ -315,7 +272,7 @@ function generateTest() {
 
   const islands  = pick(WORDS.island, 2);
   const sangWord = pick(WORDS.sang, 1)[0];
-  const haWord   = pick(WORDS.ha,   1)[0];
+  const haWord   = pick(WORDS.ha, 1)[0];
 
   const cards = [
     { word: islands[0], label: '4개의 큰 섬' },
@@ -324,10 +281,9 @@ function generateTest() {
     { word: haWord,     label: '지역명(명소)' },
   ];
 
-  const nums    = ['①','②','③','④'];
-  const gridEl  = document.getElementById('q2-word-grid');
+  const nums = ['①','②','③','④'];
+  const gridEl = document.getElementById('q2-word-grid');
   gridEl.innerHTML = '';
-
   cards.forEach((item, idx) => {
     const wrap = document.createElement('div');
     wrap.className = 'word-card-wrap';
