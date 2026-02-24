@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>히라가나 수행평가</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;700&display=swap');
@@ -13,123 +13,118 @@
     --green-light: #c8ddb0;
     --green-mid: #8fb96e;
     --green-dark: #5a8a3c;
+    --green-btn: #7aab52;
     --text: #2d2d2d;
     --text-light: #666;
+    --border: #d0c9b0;
     --shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html, body {
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-  }
-
   body {
     font-family: 'Noto Sans KR', sans-serif;
     background: var(--bg);
+    min-height: 100vh;
     color: var(--text);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
-  /* ── MAIN WRAPPER ── */
+  /* ── TEST SCREEN ── */
   #test-screen {
-    width: 100%;
-    max-width: 900px;
+    min-height: 100vh;
+    padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 40px) 60px;
+    max-width: 960px;
     margin: 0 auto;
-    padding: 32px 24px 24px;
   }
 
-  /* ── HEADER ── */
-  .test-header {
-    text-align: center;
-    margin-bottom: 28px;
-  }
+  .test-header { text-align: center; margin-bottom: clamp(20px, 3vw, 36px); }
   .test-header h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
     font-weight: 900;
     color: var(--text);
     letter-spacing: -1px;
   }
 
-  /* ── QUESTION BLOCK ── */
   .question-block {
     background: var(--card);
-    border-radius: 16px;
-    padding: 28px 32px;
-    margin-bottom: 18px;
+    border-radius: 18px;
+    padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 44px);
+    margin-bottom: 20px;
     box-shadow: var(--shadow);
   }
+  .question-block.q1-block {
+    padding: clamp(24px, 4vw, 48px) clamp(20px, 4vw, 44px);
+  }
 
-  /* ── Q-TITLE ROW ── */
   .q-title-row {
     display: flex;
     align-items: center;
-    gap: 16px;
     flex-wrap: nowrap;
+    gap: clamp(8px, 1.5vw, 14px);
   }
 
-  /* 이전 디자인: 심플 사각 번호 */
   .q-label {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
+    width: clamp(34px, 4vw, 48px);
+    height: clamp(34px, 4vw, 48px);
+    min-width: clamp(34px, 4vw, 48px);
     background: #fafff6;
     border: 2px solid var(--green-light);
     border-radius: 8px;
     font-weight: 900;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2vw, 1.35rem);
     color: var(--text);
     flex-shrink: 0;
   }
 
-  /* ── Q1 INSTRUCTION ── */
-  .q-instruction {
-    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.5;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  /* ── 행 배지 (큰 원) ── */
+  /* 행 배지 */
   .row-badge-inline {
     background: var(--green-light);
-    border: 2.5px solid var(--green-mid);
+    border: 2px solid var(--green-mid);
     color: var(--green-dark);
     border-radius: 50%;
-    width: clamp(80px, 11vw, 130px);
-    height: clamp(80px, 11vw, 130px);
+    width: clamp(80px, 10vw, 120px);
+    height: clamp(80px, 10vw, 120px);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: clamp(1rem, 2.2vw, 1.6rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
     white-space: nowrap;
     flex-shrink: 0;
+    overflow: hidden;
+    padding: 4px;
     text-align: center;
     line-height: 1.2;
   }
   .row-badge-inline.long {
     font-size: clamp(0.75rem, 1.5vw, 1.1rem);
     white-space: normal;
-    padding: 8px;
+    text-align: center;
+    line-height: 1.25;
   }
 
-  /* ── Q2 GRID ── */
+  .q-instruction {
+    font-size: clamp(1rem, 2.8vw, 1.9rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  /* Q2 그리드 */
   .word-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-top: 20px;
+    gap: clamp(10px, 2vw, 20px);
+    margin-top: 4px;
   }
 
   .word-card-wrap {
@@ -140,41 +135,40 @@
   }
 
   .word-num {
-    font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
     color: var(--green-mid);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
+    flex-shrink: 0;
   }
 
-  /* 이전 디자인: 심플 라운드 카드 */
   .word-card {
     border: 2px solid var(--green-mid);
-    border-radius: 12px;
+    border-radius: 14px;
     background: var(--green-light);
     display: flex;
     align-items: center;
     justify-content: center;
+    aspect-ratio: 2 / 1;
     width: 100%;
-    height: 100px;
     padding: 8px;
   }
 
   .word-korean {
-    font-size: 1.6rem;
+    font-size: clamp(1.2rem, 2.8vw, 1.8rem);
     font-weight: 700;
     color: var(--green-dark);
     line-height: 1.2;
     text-align: center;
   }
 
-  /* ── BUTTON ── */
+  /* Click Here */
   .btn-row {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    padding-bottom: 8px;
+    margin-top: clamp(20px, 4vw, 36px);
   }
 
   .btn-click-here {
@@ -182,49 +176,19 @@
     color: var(--green-dark);
     border: none;
     border-radius: 10px;
-    padding: 16px 64px;
-    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    padding: clamp(12px, 2vw, 16px) clamp(32px, 6vw, 60px);
+    font-size: clamp(0.9rem, 1.8vw, 1.05rem);
     font-weight: 700;
     font-family: 'Noto Sans KR', sans-serif;
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
     letter-spacing: 0.5px;
-    touch-action: manipulation;
   }
-  .btn-click-here:hover  { background: var(--green-mid); color: white; }
+  .btn-click-here:hover { background: var(--green-mid); color: white; }
   .btn-click-here:active { transform: scale(0.97); }
 
-  /* ── TABLET (768px 이하) ── */
-  @media (max-width: 768px) {
-    #test-screen { padding: 20px 16px 16px; }
-    .test-header h1 { font-size: 1.8rem; }
-    .question-block { padding: 20px; }
-    .q-label { width: 40px; height: 40px; min-width: 40px; font-size: 1.2rem; }
-    .q-instruction { font-size: 1rem; }
-    .row-badge-inline { width: 72px; height: 72px; font-size: 0.9rem; }
-    .row-badge-inline.long { font-size: 0.7rem; }
-    .word-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .word-card { height: 80px; }
-    .word-korean { font-size: 1.2rem; }
-  }
-
-  /* ── SMALL PHONE (480px 이하) ── */
   @media (max-width: 480px) {
-    .test-header h1 { font-size: 1.5rem; }
-    .q-instruction  { font-size: 0.92rem; }
-    .row-badge-inline { width: 60px; height: 60px; font-size: 0.8rem; }
-    .word-card { height: 70px; }
-    .word-korean { font-size: 1rem; }
-    .btn-click-here { padding: 13px 40px; font-size: 0.9rem; }
-  }
-
-  /* ── LANDSCAPE / HEIGHT 제한 ── */
-  @media (max-height: 700px) {
-    #test-screen { padding: 12px 20px 10px; }
-    .test-header  { margin-bottom: 12px; }
-    .question-block { padding: 14px 24px; margin-bottom: 12px; }
-    .word-grid    { gap: 8px; margin-top: 12px; }
-    .btn-row      { margin-top: 10px; }
+    .word-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
@@ -260,9 +224,9 @@
 <script>
 /* =====================================================
    ✏️ 여기 단어만 바꾸세요!
-   sang: 어려운 단어 (1개 출제)
-   jung: 보통 단어  (2개 출제)
-   ha:   쉬운 단어  (1개 출제)
+   상: 어려운 단어 (1개 출제)
+   중: 보통 단어  (2개 출제)
+   하: 쉬운 단어  (1개 출제)
 ===================================================== */
 const WORDS = {
   sang: ['병원', '우체국', '학교', '도서관'],
@@ -300,19 +264,16 @@ function generateTest() {
   const allWords = [
     ...pick(WORDS.sang, 1),
     ...pick(WORDS.jung, 2),
-    ...pick(WORDS.ha,   1),
+    ...pick(WORDS.ha, 1),
   ];
-
-  /* 카드 순서 섞기 */
   for (let i = allWords.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [allWords[i], allWords[j]] = [allWords[j], allWords[i]];
   }
 
-  const nums   = ['①','②','③','④'];
+  const nums = ['①','②','③','④'];
   const gridEl = document.getElementById('q2-word-grid');
   gridEl.innerHTML = '';
-
   allWords.forEach((word, idx) => {
     const wrap = document.createElement('div');
     wrap.className = 'word-card-wrap';
@@ -324,6 +285,7 @@ function generateTest() {
   });
 }
 
+// 페이지 열면 바로 문제 생성
 generateTest();
 </script>
 </body>
