@@ -157,12 +157,12 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: clamp(80px, 12vw, 130px);
-    padding: 16px 8px;
+    height: 100px;
+    padding: 8px;
   }
 
   .word-korean {
-    font-size: clamp(1.2rem, 2.8vw, 2rem);
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--green-dark);
     line-height: 1.2;
@@ -204,8 +204,8 @@
     .row-badge-inline { width: 72px; height: 72px; font-size: 0.9rem; }
     .row-badge-inline.long { font-size: 0.7rem; }
     .word-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .word-card { min-height: 70px; }
-    .word-korean { font-size: 1.15rem; }
+    .word-card { height: 80px; }
+    .word-korean { font-size: 1.2rem; }
   }
 
   /* ── SMALL PHONE (480px 이하) ── */
@@ -213,6 +213,7 @@
     .test-header h1 { font-size: 1.5rem; }
     .q-instruction  { font-size: 0.92rem; }
     .row-badge-inline { width: 60px; height: 60px; font-size: 0.8rem; }
+    .word-card { height: 70px; }
     .word-korean { font-size: 1rem; }
     .btn-click-here { padding: 13px 40px; font-size: 0.9rem; }
   }
