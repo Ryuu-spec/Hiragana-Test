@@ -25,19 +25,21 @@
   body {
     font-family: 'Noto Sans KR', sans-serif;
     background: var(--bg);
+    min-height: 100vh;
     color: var(--text);
   }
 
   /* ── TEST SCREEN ── */
   #test-screen {
-    padding: 28px 20px 8px;
+    min-height: 100vh;
+    padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 40px) 10px;
     max-width: 960px;
     margin: 0 auto;
   }
 
-  .test-header { text-align: center; margin-bottom: 20px; }
+  .test-header { text-align: center; margin-bottom: clamp(20px, 3vw, 36px); }
   .test-header h1 {
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
     font-weight: 900;
     color: var(--text);
     letter-spacing: -1px;
@@ -46,12 +48,12 @@
   .question-block {
     background: var(--card);
     border-radius: 18px;
-    padding: 20px 28px;
-    margin-bottom: 16px;
+    padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 44px);
+    margin-bottom: 20px;
     box-shadow: var(--shadow);
   }
   .question-block.q1-block {
-    padding: 20px 28px;
+    padding: clamp(24px, 4vw, 48px) clamp(20px, 4vw, 44px);
   }
 
   .q-title-row {
@@ -83,14 +85,16 @@
     border: 2px solid var(--green-mid);
     color: var(--green-dark);
     border-radius: 50%;
-    width: 90px;
-    height: 90px;
+    width: clamp(80px, 10vw, 120px);
+    height: clamp(80px, 10vw, 120px);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: 1.2rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+    white-space: nowrap;
     flex-shrink: 0;
+    overflow: hidden;
     padding: 4px;
     text-align: center;
     line-height: 1.2;
@@ -115,22 +119,23 @@
     overflow: hidden;
   }
 
+  /* Q2 그리드 */
   .word-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 8px;
+    gap: clamp(10px, 2vw, 20px);
+    margin-top: 4px;
   }
 
   .word-card-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
   }
 
   .word-num {
-    font-size: 0.9rem;
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
     color: var(--green-mid);
     display: flex;
     align-items: center;
@@ -141,18 +146,18 @@
 
   .word-card {
     border: 2px solid var(--green-mid);
-    border-radius: 12px;
+    border-radius: 14px;
     background: var(--green-light);
     display: flex;
     align-items: center;
     justify-content: center;
+    aspect-ratio: 2 / 1;
     width: 100%;
-    min-height: 52px;
-    padding: 10px 6px;
+    padding: 8px;
   }
 
   .word-korean {
-    font-size: 1.2rem;
+    font-size: clamp(1.2rem, 2.8vw, 1.8rem);
     font-weight: 700;
     color: var(--green-dark);
     line-height: 1.2;
@@ -163,8 +168,7 @@
   .btn-row {
     display: flex;
     justify-content: center;
-    margin-top: 12px;
-    margin-bottom: 0;
+    margin-top: clamp(20px, 4vw, 36px);
   }
 
   .btn-click-here {
